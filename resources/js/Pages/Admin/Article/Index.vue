@@ -1,39 +1,162 @@
 <template>
+    <Head title="Article" />
     <AuthenticatedLayout>
-        <div class="space-y-2">
-            <input
-                type="file"
-                @change="handleFileUpload"
-            />
-            <input type="text" v-model="Form.title" placeholder="Title" />
-            <input
-                type="text"
-                v-model="Form.description"
-                placeholder="Description"
-            />
-            <input type="text" v-model="Form.content"  placeholder="Content"></input>
+        <BaseTable :columns="columns" :rows="rows">
+            <template #actions>
+                <button
+                    @click="showModal = true"
+                    class="rounded bg-blue-600 px-4 py-2 text-white"
+                >
+                    Tambah Data
+                </button>
+            </template>
 
-            <button @click.prevent="submit">Submit</button>
-        </div>
+            <template #header-no="{ column }">
+                <div class="text-center">{{ column.label }}</div>
+            </template>
 
-        <div v-for="(item, index) in articles.data" :key="index" class="">
-            <img class="h-12 w-12" :src="item.thumbnail" alt="" />
-            <h1>{{ item.title }}</h1>
-            <p>{{ item.description }}</p>
-            <p>{{ item.content }}</p>
-            <button @click="edit(item)">Edit</button>
-            <button @click="deleteId(item.id)">Delete</button>
-        </div>
+            <template #cell-no="{ row }">
+                <div class="text-center">{{ row.no }}</div>
+            </template>
+
+            <template #header-title="{ column }">
+                <div class="max-w-[300px]">{{ column.label }}</div>
+            </template>
+
+            <template #cell-title="{ row }">
+                <div class="max-w-[300px] truncate">{{ row.title }}</div>
+            </template>
+
+            <template #header-description="{ column }">
+                <div class="max-w-[300px]">{{ column.label }}</div>
+            </template>
+
+            <template #cell-description="{ row }">
+                <div class="max-w-[300px] truncate">{{ row.description }}</div>
+            </template>
+
+            <template #header-thumbnail="{ column }">
+                <div class="w-12 text-center">{{ column.label }}</div>
+            </template>
+
+            <template #cell-thumbnail="{ row }">
+                <div class="w-12 text-center">
+                    <img
+                        :src="row.thumbnail"
+                        class="h-12 w-12 rounded object-cover"
+                    />
+                </div>
+            </template>
+
+            <template #header-action="{ column }">
+                <div class="w-12 text-center">{{ column.label }}</div>
+            </template>
+
+            <template #cell-action="{ row }">
+                <div class="flex w-12 items-center justify-center gap-3">
+                    <button
+                        @click="edit(row)"
+                        class="text-blue-600 hover:text-blue-800"
+                    >
+                        <Icon icon="lucide:edit" />
+                    </button>
+                    <button
+                        @click="deleteId(row.id)"
+                        class="text-red-600 hover:text-red-800"
+                    >
+                        <Icon icon="tabler:trash" />
+                    </button>
+                </div>
+            </template>
+        </BaseTable>
+
+        <BaseModal
+            v-model="showModal"
+            :title="Form.id ? 'Edit Data' : 'Tambah Data'"
+            @reset="resetForm"
+        >
+            <div class="space-y-4">
+                <div class="">
+                    <InputLabel for="thumbnail" value="Thumbnail" />
+                    <TextInput
+                        type="file"
+                        id="thumbnail"
+                        class="w-full rounded border p-2"
+                        @change="Form.thumbnail = $event.target.files[0]"
+                    />
+                    <InputError class="mt-2" :message="Form.errors.thumbnail" />
+                </div>
+                <div class="">
+                    <InputLabel for="title" value="Title" />
+                    <TextInput
+                        type="text"
+                        id="title"
+                        class="w-full rounded border p-2"
+                        v-model="Form.title"
+                    />
+                    <InputError class="mt-2" :message="Form.errors.title" />
+                </div>
+                <div class="">
+                    <InputLabel for="description" value="Description" />
+                    <TextInput
+                        type="text"
+                        id="description"
+                        class="w-full rounded border p-2"
+                        v-model="Form.description"
+                    />
+                    <InputError
+                        class="mt-2"
+                        :message="Form.errors.description"
+                    />
+                </div>
+                <div class="">
+                    <InputLabel for="content" value="Content" />
+                    <QuillEditor
+                        v-model:content="Form.content"
+                        theme="snow"
+                        content-type="html"
+                        class="custom-quill"
+                        style="height: 200px"
+                    />
+                    <InputError class="mt-2" :message="Form.errors.content" />
+                </div>
+            </div>
+
+            <template #footer>
+                <button
+                    @click="closeModal"
+                    class="rounded border px-3 py-1 hover:bg-gray-200"
+                >
+                    Batal
+                </button>
+                <button
+                    @click="submit"
+                    class="rounded bg-blue-600 px-3 py-1 text-white"
+                >
+                    Simpan
+                </button>
+            </template>
+        </BaseModal>
     </AuthenticatedLayout>
 </template>
 
 <script setup>
+import { QuillEditor } from '@vueup/vue-quill';
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { useForm } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
+import { BaseTable, BaseModal } from '@/Components/Base';
+import { Icon } from '@iconify/vue';
+import { computed, ref } from 'vue';
+import TextInput from '@/Components/TextInput.vue';
+import InputLabel from '@/Components/InputLabel.vue';
+import InputError from '@/Components/InputError.vue';
 
 const props = defineProps({
     articles: Object,
 });
+
+const showModal = ref(false);
 
 const Form = useForm({
     id: null,
@@ -42,6 +165,26 @@ const Form = useForm({
     description: '',
     content: '',
 });
+
+const columns = [
+    { label: 'No', key: 'no' },
+    { label: 'thumbnail', key: 'thumbnail' },
+    { label: 'title', key: 'title' },
+    { label: 'description', key: 'description' },
+    { label: 'Aksi', key: 'action' },
+];
+
+const rows = computed(() =>
+    props.articles.data.map((item, index) => ({
+        id: item.id,
+        no: index + 1,
+        thumbnail: item.thumbnail,
+        title: item.title,
+        description: item.description,
+        content: item.content,
+        action: item.id,
+    })),
+);
 
 const submit = () => {
     if (Form.id) {
@@ -58,26 +201,27 @@ const submit = () => {
             preserveScroll: true,
             preserveState: true,
             onError: (errors) => console.log(errors),
-            onSuccess: () => Form.reset(),
+            onSuccess: () => {
+                Form.reset();
+                showModal.value = false;
+            },
         });
     }
 };
 
-
 const edit = (item) => {
+    showModal.value = true;
     Form.id = item.id;
     Form.title = item.title;
     Form.description = item.description;
     Form.content = item.content;
-    Form.thumbnail = item.thumbnail;
-
+    Form.thumbnail = item.thumbnail ?? null;
     console.log(item);
 };
 
 const deleteId = (id) => {
     Form.delete(route('admin.article.destroy', id));
 };
-
 
 function handleFileUpload(event) {
     const file = event.target.files[0];
@@ -86,5 +230,13 @@ function handleFileUpload(event) {
     }
 }
 
-console.log(props.articles);
+const resetForm = () => {
+    Form.reset();
+    Form.clearErrors();
+};
+
+const closeModal = () => {
+    showModal.value = false;
+    resetForm();
+};
 </script>
