@@ -1,0 +1,92 @@
+<template>
+    <!-- Overlay -->
+    <transition name="fade">
+        <div
+            v-if="modelValue"
+            class="fixed inset-0 bg-black/40"
+            @click="close"
+        />
+    </transition>
+
+    <!-- Modal Box -->
+    <transition name="slide-up">
+        <div
+            v-if="modelValue"
+            class="fixed bottom-10 right-10 z-50 w-full max-w-lg rounded-md bg-white p-6 shadow-lg"
+        >
+            <!-- Title -->
+            <h2 class="mb-4 text-lg font-semibold">{{ title }}</h2>
+
+            <!-- Body -->
+            <div class="mb-6">
+                <slot />
+            </div>
+
+            <!-- Footer -->
+            <div class="flex justify-end gap-3">
+                <slot name="footer">
+                    <button
+                        @click="close"
+                        class="rounded border px-3 py-1 hover:bg-gray-100"
+                    >
+                        Tutup
+                    </button>
+                </slot>
+            </div>
+        </div>
+    </transition>
+</template>
+
+<script setup>
+const props = defineProps({
+    modelValue: Boolean,
+    title: { type: String, default: 'Form' },
+});
+
+const emit = defineEmits(['update:modelValue', 'reset']);
+
+const close = () => {
+    emit('update:modelValue', false);
+    emit('reset');
+};
+</script>
+
+<style scoped>
+/* Overlay fade */
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+.fade-enter-to,
+.fade-leave-from {
+    opacity: 1;
+}
+
+/* Modal slide up dari bawah */
+.slide-up-enter-active,
+.slide-up-leave-active {
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+.slide-up-enter-from {
+    transform: translateY(50%);
+    opacity: 0;
+}
+.slide-up-enter-to {
+    transform: translateY(0);
+    opacity: 1;
+}
+.slide-up-leave-from {
+    transform: translateY(0);
+    opacity: 1;
+}
+.slide-up-leave-to {
+    transform: translateY(50%);
+    opacity: 0;
+}
+</style>
