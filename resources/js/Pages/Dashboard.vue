@@ -15,7 +15,7 @@ defineProps({
         <div class="">
             <div class="grid grid-cols-4 gap-4">
                 <InformationCard :count="articles" :title="'Total Articles'" />
-                <InformationCard :count="articles" :title="'Total Articles'" />
+                <InformationCard :count="9999" :title="'Total Testimonial'" />
                 <InformationCard :count="articles" :title="'Total Articles'" />
                 <InformationCard :count="articles" :title="'Total Articles'" />
             </div>

@@ -24,7 +24,7 @@ const showingNavigationDropdown = ref(false);
 
             <!-- Menu -->
             <nav class="my-4 flex flex-1 flex-col justify-between px-3">
-                <div class="space-y-3">
+                <div class="space-y-4">
                     <BaseLink
                         :href="route('dashboard')"
                         :active="route().current('dashboard')"
@@ -39,6 +39,9 @@ const showingNavigationDropdown = ref(false);
                         :icon="'material-symbols:article-rounded'"
                     >
                         Articles
+                    </BaseLink>
+                    <BaseLink :icon="'dashicons:testimonial'">
+                        Testimonial
                     </BaseLink>
                 </div>
                 <BaseLink

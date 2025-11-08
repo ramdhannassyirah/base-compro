@@ -216,19 +216,18 @@ const edit = (item) => {
     Form.description = item.description;
     Form.content = item.content;
     Form.thumbnail = item.thumbnail ?? null;
-    console.log(item);
 };
 
 const deleteId = (id) => {
     Form.delete(route('admin.article.destroy', id));
 };
 
-function handleFileUpload(event) {
-    const file = event.target.files[0];
-    if (file) {
-        Form.thumbnail = file;
-    }
-}
+// function handleFileUpload(event) {
+//     const file = event.target.files[0];
+//     if (file) {
+//         Form.thumbnail = file;
+//     }
+// }
 
 const resetForm = () => {
     Form.reset();

@@ -1,7 +1,13 @@
 <?php
 
+// BE
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+
+//FE
+use App\Http\Controllers\FrontendController;
+
+// GE
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -9,7 +15,7 @@ use Inertia\Inertia;
 // ADMIN
 use App\Http\Controllers\Admin\ArticleController;
 
-Route::get('/', function () {
+Route::get('welcome', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
@@ -17,6 +23,9 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+
+Route::get('/', [FrontendController::class, 'index']);
 
 Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
