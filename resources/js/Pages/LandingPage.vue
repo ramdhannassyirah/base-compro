@@ -2,6 +2,7 @@
     <Head title="Beranda" />
     <AppLayout>
         <Hero />
+        <ProductCarousel />
         <Products />
         <Information />
         <About />
@@ -16,6 +17,7 @@ import {
     Information,
     About,
     Testimonial,
+    ProductCarousel,
 } from '@/Components/Sections';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { Head } from '@inertiajs/vue3';
