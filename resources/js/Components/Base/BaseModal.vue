@@ -43,7 +43,7 @@
 </template>
 
 <script setup>
-const props = defineProps({
+defineProps({
     modelValue: Boolean,
     title: { type: String, default: 'Form' },
 });

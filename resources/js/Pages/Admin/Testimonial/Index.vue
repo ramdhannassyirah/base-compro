@@ -145,12 +145,12 @@
                 >
                     Batal
                 </button>
-                <button
+                <PrimaryButton
                     @click="submit"
                     class="rounded bg-blue-600 px-3 py-1 text-white"
                 >
                     Simpan
-                </button>
+                </PrimaryButton>
             </template>
         </BaseModal>
     </AuthenticatedLayout>

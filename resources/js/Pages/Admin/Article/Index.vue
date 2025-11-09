@@ -99,13 +99,6 @@
                             :src="Form.old_thumbnail"
                             class="h-20 w-20 rounded object-cover"
                         />
-
-                        <button
-                            @click="removeThumbnail"
-                            class="mt-2 text-sm text-red-600 hover:underline"
-                        >
-                            Hapus Thumbnail
-                        </button>
                     </div>
                 </div>
                 <div class="">
@@ -151,12 +144,7 @@
                 >
                     Batal
                 </button>
-                <button
-                    @click="submit"
-                    class="rounded bg-blue-600 px-3 py-1 text-white"
-                >
-                    Simpan
-                </button>
+                <PrimaryButton @click="submit"> Simpan </PrimaryButton>
             </template>
         </BaseModal>
     </AuthenticatedLayout>
@@ -166,7 +154,7 @@
 import { QuillEditor } from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, router, useForm } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
 import { BaseTable, BaseModal } from '@/Components/Base';
 import { Icon } from '@iconify/vue';
 import { computed, ref } from 'vue';
@@ -233,11 +221,6 @@ const submit = () => {
             },
         },
     );
-};
-
-const removeThumbnail = () => {
-    Form.thumbnail = null;
-    Form.old_thumbnail = null;
 };
 
 const edit = (item) => {
