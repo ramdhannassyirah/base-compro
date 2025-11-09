@@ -144,9 +144,10 @@
 <script setup>
 import { Icon } from '@iconify/vue';
 import { Link, usePage } from '@inertiajs/vue3';
+import { computed } from 'vue';
 
 const appName = usePage().props.appName;
-const websiteSetting = usePage().props.websiteSetting;
+const websiteSetting = computed(() => usePage().props.websiteSetting);
 </script>
 
 <style></style>
