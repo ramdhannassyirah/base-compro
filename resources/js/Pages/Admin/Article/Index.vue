@@ -1,5 +1,5 @@
 <template>
-    <Head title="Article" />
+    <Head title="Articles" />
     <AuthenticatedLayout>
         <BaseTable :columns="columns" :rows="rows">
             <template #actions>
@@ -74,19 +74,26 @@
         >
             <div class="space-y-4">
                 <div class="">
-                    <InputLabel for="thumbnail" value="Thumbnail" />
-                    <input
-                        type="file"
-                        id="thumbnail"
-                        accept="image/*"
-                        @change="(e) => (Form.thumbnail = e.target.files[0])"
-                        class="w-full rounded border p-2"
-                    />
-                    <InputError class="mt-2" :message="Form.errors.thumbnail" />
+                    <div class="">
+                        <InputLabel for="thumbnail" value="Thumbnail" />
+                        <input
+                            type="file"
+                            id="thumbnail"
+                            accept="image/*"
+                            @change="
+                                (e) => (Form.thumbnail = e.target.files[0])
+                            "
+                            class="w-full rounded border p-2"
+                        />
+                        <InputError
+                            class="mt-2"
+                            :message="Form.errors.thumbnail"
+                        />
+                    </div>
 
                     <div
                         v-if="Form.old_thumbnail && !Form.thumbnail"
-                        class="mb-2"
+                        class="my-2 flex items-center gap-4"
                     >
                         <img
                             :src="Form.old_thumbnail"
@@ -257,6 +264,8 @@ const deleteId = (id) => {
 const resetForm = () => {
     Form.reset();
     Form.clearErrors();
+    Form.thumbnail = null;
+    Form.old_thumbnail = null;
 };
 
 const closeModal = () => {

@@ -1,6 +1,6 @@
 <template>
     <AuthenticatedLayout>
-        <Head title="Website Setting" />
+        <Head title="Settings" />
 
         <div class="rounded-xl bg-white p-8 shadow-md">
             <div class="mb-3 flex items-center gap-4">
