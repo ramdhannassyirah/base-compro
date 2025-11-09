@@ -5,6 +5,7 @@ import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import { Link } from '@inertiajs/vue3';
 import BaseLink from '@/Components/Base/BaseLink.vue';
+import { Icon } from '@iconify/vue';
 
 const showingNavigationDropdown = ref(false);
 </script>
@@ -64,10 +65,15 @@ const showingNavigationDropdown = ref(false);
                 <nav class="border-b border-gray-100 bg-white">
                     <!-- Primary Navigation Menu -->
                     <div class="px-4 sm:px-6">
-                        <div class="flex h-16 justify-end">
-                            <div class="hidden sm:ms-6 sm:flex sm:items-center">
-                                <!-- Settings Dropdown -->
-                                <div class="relative ms-3">
+                        <div class="flex h-16 items-center justify-end">
+                            <Link
+                                href="/"
+                                class="mr-4 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100"
+                            >
+                                <Icon icon="mdi:globe" class="text-2xl" />
+                            </Link>
+                            <div class="hidden sm:flex sm:items-center">
+                                <div class="relative">
                                     <Dropdown align="right" width="48">
                                         <template #trigger>
                                             <span
@@ -116,7 +122,6 @@ const showingNavigationDropdown = ref(false);
                                 </div>
                             </div>
 
-                            <!-- Hamburger -->
                             <div class="-me-2 flex items-center sm:hidden">
                                 <button
                                     @click="

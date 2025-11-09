@@ -13,52 +13,63 @@
                     />
                     <h1 v-else class="text-xl font-semibold">{{ appName }}</h1>
                 </div>
-
-                <div class="hidden space-x-4 md:flex">
-                    <Link
-                        href="/"
-                        :class="
-                            $page.url === '/'
-                                ? 'border-b-2 border-black pb-1'
-                                : ''
-                        "
+                <div class="flex items-center gap-4">
+                    <div
+                        class="hidden space-x-4 border-2 border-transparent md:flex"
                     >
-                        Beranda
-                    </Link>
+                        <Link
+                            href="/"
+                            :class="
+                                $page.url === '/'
+                                    ? 'border-b-2 border-black'
+                                    : ''
+                            "
+                        >
+                            Beranda
+                        </Link>
 
+                        <Link
+                            href="/articles"
+                            :class="
+                                $page.url.startsWith('/articles')
+                                    ? 'border-b-2 border-black'
+                                    : ''
+                            "
+                        >
+                            Articles
+                        </Link>
+
+                        <Link
+                            href="/product"
+                            :class="
+                                $page.url.startsWith('/product')
+                                    ? 'border-b-2 border-black'
+                                    : ''
+                            "
+                        >
+                            Product
+                        </Link>
+
+                        <a href="#testimonial"> Testimonial </a>
+
+                        <Link
+                            href="/about"
+                            :class="
+                                $page.url.startsWith('/about')
+                                    ? 'border-b-2 border-black'
+                                    : ''
+                            "
+                        >
+                            Tentang Kami
+                        </Link>
+                    </div>
                     <Link
-                        href="/articles"
-                        :class="
-                            $page.url.startsWith('/articles')
-                                ? 'border-b-2 border-black pb-1'
-                                : ''
-                        "
+                        v-if="isAuthenticated"
+                        href="/dashboard"
+                        class="flex items-center gap-2 rounded-xl border px-4 py-2"
                     >
-                        Articles
-                    </Link>
-
-                    <Link
-                        href="/product"
-                        :class="
-                            $page.url.startsWith('/product')
-                                ? 'border-b-2 border-black pb-1'
-                                : ''
-                        "
-                    >
-                        Product
-                    </Link>
-
-                    <a href="#testimonial"> Testimonial </a>
-
-                    <Link
-                        href="/about"
-                        :class="
-                            $page.url.startsWith('/about')
-                                ? 'border-b-2 border-black pb-1'
-                                : ''
-                        "
-                    >
-                        Tentang Kami
+                        Dashboard
+                        <Icon icon="mdi:account" class="text-xl" />
                     </Link>
                 </div>
             </div>
@@ -148,6 +159,7 @@ import { computed } from 'vue';
 
 const appName = usePage().props.appName;
 const websiteSetting = computed(() => usePage().props.websiteSetting);
+const isAuthenticated = computed(() => usePage().props.auth.user);
 </script>
 
 <style></style>
