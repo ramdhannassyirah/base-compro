@@ -1,20 +1,22 @@
 <template>
-    <div class="space-y-4 rounded-xl bg-white p-6 shadow-md">
+    <div class="space-y-4 rounded-xl bg-white p-4 shadow-md">
         <!-- Search Bar -->
-        <div class="flex items-center justify-between">
+        <div class="flex flex-wrap items-center justify-between gap-3">
             <TextInput
                 v-model="search"
                 placeholder="Cari data..."
-                class="w-60"
+                class="w-full sm:w-60"
             />
 
             <slot name="actions" />
         </div>
 
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-left text-sm text-gray-600">
-                <!-- HEADER -->
-                <thead class="bg-gray-50 text-xs uppercase text-gray-700">
+        <!-- TABEL RESPONSIVE -->
+        <div class="overflow-x-auto rounded-lg border">
+            <table
+                class="w-full min-w-10 overflow-x-auto text-left text-sm text-gray-700"
+            >
+                <thead class="bg-gray-100 text-xs uppercase text-gray-600">
                     <tr>
                         <th
                             v-for="column in columns"
@@ -40,12 +42,11 @@
                     </tr>
                 </thead>
 
-                <!-- BODY -->
                 <tbody>
                     <tr
                         v-for="(row, rowIndex) in paginatedRows"
                         :key="rowIndex"
-                        class="border-b bg-white transition hover:bg-gray-50"
+                        class="border-b transition hover:bg-gray-50"
                     >
                         <td
                             v-for="column in columns"
@@ -71,7 +72,9 @@
         </div>
 
         <!-- Pagination -->
-        <div class="flex items-center justify-between pt-2 text-sm">
+        <div
+            class="flex flex-wrap items-center justify-between gap-3 pt-2 text-sm"
+        >
             <span>
                 Menampilkan {{ start + 1 }} - {{ end }} dari
                 {{ filteredRows.length }}
@@ -81,14 +84,14 @@
                 <button
                     @click="prevPage"
                     :disabled="page === 1"
-                    class="rounded border px-3 py-1 disabled:opacity-50"
+                    class="rounded border px-3 py-1 hover:bg-gray-100 disabled:opacity-50"
                 >
                     Previous
                 </button>
                 <button
                     @click="nextPage"
                     :disabled="end >= filteredRows.length"
-                    class="rounded border px-3 py-1 disabled:opacity-50"
+                    class="rounded border px-3 py-1 hover:bg-gray-100 disabled:opacity-50"
                 >
                     Next
                 </button>
@@ -123,7 +126,6 @@ const toggleSort = (key) => {
 
 const filteredRows = computed(() => {
     if (!search.value) return props.rows;
-
     return props.rows.filter((row) =>
         Object.values(row).some((val) =>
             String(val ?? '')
@@ -135,7 +137,6 @@ const filteredRows = computed(() => {
 
 const sortedRows = computed(() => {
     if (!sortKey.value) return filteredRows.value;
-
     return [...filteredRows.value].sort((a, b) => {
         const x = a[sortKey.value];
         const y = b[sortKey.value];

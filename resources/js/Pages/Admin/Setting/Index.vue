@@ -19,7 +19,7 @@
                 </button>
             </div>
             <form @submit.prevent="submit">
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid gap-4 md:grid-cols-2">
                     <!-- Logo -->
                     <div>
                         <InputLabel for="logo" value="Logo Website" />
