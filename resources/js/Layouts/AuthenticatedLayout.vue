@@ -40,7 +40,11 @@ const showingNavigationDropdown = ref(false);
                     >
                         Articles
                     </BaseLink>
-                    <BaseLink :icon="'dashicons:testimonial'">
+                    <BaseLink
+                        :href="route('admin.testimonial.index')"
+                        :active="route().current('admin.testimonial.index')"
+                        :icon="'dashicons:testimonial'"
+                    >
                         Testimonial
                     </BaseLink>
                 </div>

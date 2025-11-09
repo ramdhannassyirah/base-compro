@@ -14,6 +14,7 @@ use Inertia\Inertia;
 
 // ADMIN
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\TestimonialController;
 
 Route::get('welcome', function () {
     return Inertia::render('Welcome', [
@@ -40,6 +41,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('article', ArticleController::class);
+    Route::resource('testimonial', TestimonialController::class);
 });
 
 require __DIR__.'/auth.php';

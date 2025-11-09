@@ -3,7 +3,7 @@
         class="grid grid-cols-2 items-center gap-1 rounded-lg bg-white px-8 py-10 shadow-md"
     >
         <div class="justify-self-center text-center">
-            <p class="text-5xl font-bold">{{ count }}</p>
+            <p class="text-5xl font-bold">{{ count || '0' }}</p>
             <p class="text-md text-gray-500">{{ title }}</p>
         </div>
         <div
