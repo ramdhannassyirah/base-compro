@@ -14,7 +14,7 @@ defineProps({
 
     <AuthenticatedLayout>
         <div class="">
-            <div class="grid grid-cols-4 gap-4">
+            <div class="grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
                 <InformationCard
                     :count="articles"
                     :icon="'ix:product'"
