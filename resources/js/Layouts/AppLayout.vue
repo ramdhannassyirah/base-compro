@@ -7,12 +7,61 @@
                 <div class="">
                     <h1 class="text-xl font-semibold">{{ appName }}</h1>
                 </div>
-                <div class="hidden space-x-4 md:block">
-                    <Link href="">Beranda</Link>
-                    <Link href="">Articles</Link>
-                    <Link href="">Product</Link>
-                    <Link href="">Testimonial</Link>
-                    <Link href="">Tentang Kami</Link>
+                <div class="hidden space-x-4 md:flex">
+                    <Link
+                        href="/"
+                        :class="
+                            $page.url === '/'
+                                ? 'border-b-2 border-black pb-1'
+                                : ''
+                        "
+                    >
+                        Beranda
+                    </Link>
+
+                    <Link
+                        href="/articles"
+                        :class="
+                            $page.url.startsWith('/articles')
+                                ? 'border-b-2 border-black pb-1'
+                                : ''
+                        "
+                    >
+                        Articles
+                    </Link>
+
+                    <Link
+                        href="/product"
+                        :class="
+                            $page.url.startsWith('/product')
+                                ? 'border-b-2 border-black pb-1'
+                                : ''
+                        "
+                    >
+                        Product
+                    </Link>
+
+                    <Link
+                        href="/testimonial"
+                        :class="
+                            $page.url.startsWith('/testimonial')
+                                ? 'border-b-2 border-black pb-1'
+                                : ''
+                        "
+                    >
+                        Testimonial
+                    </Link>
+
+                    <Link
+                        href="/about"
+                        :class="
+                            $page.url.startsWith('/about')
+                                ? 'border-b-2 border-black pb-1'
+                                : ''
+                        "
+                    >
+                        Tentang Kami
+                    </Link>
                 </div>
             </div>
         </nav>
@@ -65,18 +114,9 @@
                 <div>
                     <h3 class="mb-3 font-semibold text-white">Follow Us</h3>
                     <div class="flex gap-4 text-xl">
-                        <a href="#" class="transition hover:text-white"
-                            ><i class="mdi mdi-instagram"></i
-                        ></a>
-                        <a href="#" class="transition hover:text-white"
-                            ><i class="mdi mdi-facebook"></i
-                        ></a>
-                        <a href="#" class="transition hover:text-white"
-                            ><i class="mdi mdi-twitter"></i
-                        ></a>
-                        <a href="#" class="transition hover:text-white"
-                            ><i class="mdi mdi-youtube"></i
-                        ></a>
+                        <a href="#" class="transition hover:text-white">
+                            <Icon icon="mdi:instagram" width="24" height="24" />
+                        </a>
                     </div>
                 </div>
             </div>
@@ -93,6 +133,7 @@
 </template>
 
 <script setup>
+import { Icon } from '@iconify/vue';
 import { Link, usePage } from '@inertiajs/vue3';
 
 const appName = usePage().props.appName;
