@@ -17,19 +17,19 @@
             </template>
 
             <template #header-title="{ column }">
-                <div class="max-w-[300px]">{{ column.label }}</div>
+                <div class="max-w-[150px]">{{ column.label }}</div>
             </template>
 
             <template #cell-title="{ row }">
-                <div class="max-w-[300px] truncate">{{ row.title }}</div>
+                <div class="max-w-[150px] truncate">{{ row.title }}</div>
             </template>
 
             <template #header-description="{ column }">
-                <div class="max-w-[300px]">{{ column.label }}</div>
+                <div class="max-w-[150px]">{{ column.label }}</div>
             </template>
 
             <template #cell-description="{ row }">
-                <div class="max-w-[300px] truncate">{{ row.description }}</div>
+                <div class="max-w-[150px] truncate">{{ row.description }}</div>
             </template>
 
             <template #header-thumbnail="{ column }">
