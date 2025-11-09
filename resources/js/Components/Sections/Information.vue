@@ -28,6 +28,10 @@ import { onMounted, ref } from 'vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+const props = defineProps({
+    testimonialCount: Number,
+});
+
 gsap.registerPlugin(ScrollTrigger);
 
 const sectionRef = ref(null);
@@ -39,8 +43,8 @@ const num4 = ref(null);
 const counters = [
     { el: num1, end: 50 },
     { el: num2, end: 10 },
-    { el: num3, end: 180 },
-    { el: num4, end: 150 },
+    { el: num3, end: props.testimonialCount },
+    { el: num4, end: props.testimonialCount },
 ];
 
 onMounted(() => {

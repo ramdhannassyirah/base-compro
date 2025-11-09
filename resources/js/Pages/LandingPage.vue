@@ -4,9 +4,9 @@
         <Hero />
         <ProductCarousel />
         <Products />
-        <Information />
+        <Information :testimonialCount="testimonialCount" />
         <About />
-        <Testimonial />
+        <Testimonial id="testimonial" :testimonials="testimonials" />
     </AppLayout>
 </template>
 
@@ -21,6 +21,11 @@ import {
 } from '@/Components/Sections';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { Head } from '@inertiajs/vue3';
+
+defineProps({
+    testimonials: Object,
+    testimonialCount: Number,
+});
 </script>
 
 <style></style>
