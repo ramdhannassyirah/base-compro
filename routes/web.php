@@ -14,6 +14,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\CategoryController;
 
 Route::get('welcome', function () {
     return Inertia::render('Welcome', [
@@ -43,6 +44,8 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::put('setting/{setting}', [SettingController::class, 'update'])->name('setting.update');
     Route::delete('setting/{setting}/logo', [SettingController::class, 'deleteLogo'])
     ->name('setting.deleteLogo');
+
+    Route::resource('category', CategoryController::class);
 });
 
 require __DIR__.'/auth.php';

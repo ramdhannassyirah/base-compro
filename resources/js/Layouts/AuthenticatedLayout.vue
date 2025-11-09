@@ -33,6 +33,14 @@ const showingNavigationDropdown = ref(false);
                         Dashboard
                     </BaseLink>
 
+                    <BaseLink
+                        :href="route('admin.category.index')"
+                        :active="route().current('admin.category.index')"
+                        :icon="'material-symbols:category-rounded'"
+                    >
+                        Category
+                    </BaseLink>
+
                     <BaseLink :icon="'ix:product'"> Products </BaseLink>
 
                     <BaseLink

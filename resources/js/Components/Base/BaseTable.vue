@@ -105,8 +105,14 @@ import { ref, computed } from 'vue';
 import TextInput from '../TextInput.vue';
 
 const props = defineProps({
-    columns: Array,
-    rows: Array,
+    columns: {
+        type: Array,
+        required: true,
+    },
+    rows: {
+        type: Array,
+        default: () => [],
+    },
 });
 
 const search = ref('');
@@ -151,7 +157,7 @@ const end = computed(() =>
     Math.min(start.value + perPage.value, sortedRows.value.length),
 );
 const paginatedRows = computed(() =>
-    sortedRows.value.slice(start.value, end.value),
+    sortedRows.value?.slice(start.value, end.value),
 );
 
 const prevPage = () => page.value > 1 && page.value--;

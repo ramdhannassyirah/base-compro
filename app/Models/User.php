@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Article;
+use App\Models\Category;
 
 class User extends Authenticatable
 {
@@ -50,5 +51,10 @@ class User extends Authenticatable
     public function articles()
     {
         return $this->hasMany(Article::class);
+    }
+
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
     }
 }
