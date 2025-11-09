@@ -22,7 +22,7 @@
                             :class="
                                 $page.url === '/'
                                     ? 'border-b-2 border-black'
-                                    : ''
+                                    : 'transition-all duration-300 hover:border-b-2 hover:border-black'
                             "
                         >
                             Beranda
@@ -33,7 +33,7 @@
                             :class="
                                 $page.url.startsWith('/articles')
                                     ? 'border-b-2 border-black'
-                                    : ''
+                                    : 'transition-all duration-300 hover:border-b-2 hover:border-black'
                             "
                         >
                             Articles
@@ -44,20 +44,25 @@
                             :class="
                                 $page.url.startsWith('/product')
                                     ? 'border-b-2 border-black'
-                                    : ''
+                                    : 'transition-all duration-300 hover:border-b-2 hover:border-black'
                             "
                         >
                             Product
                         </Link>
 
-                        <a href="#testimonial"> Testimonial </a>
+                        <a
+                            href="#testimonial"
+                            class="transition-all duration-300 hover:border-b-2 hover:border-black"
+                        >
+                            Testimonial
+                        </a>
 
                         <Link
                             href="/about"
                             :class="
                                 $page.url.startsWith('/about')
                                     ? 'border-b-2 border-black'
-                                    : ''
+                                    : 'transition-all duration-300 hover:border-b-2 hover:border-black'
                             "
                         >
                             Tentang Kami
@@ -66,7 +71,7 @@
                     <Link
                         v-if="isAuthenticated"
                         href="/dashboard"
-                        class="flex items-center gap-2 rounded-xl border px-4 py-2"
+                        class="flex items-center gap-2 rounded-xl border px-4 py-2 transition-all duration-300 hover:border-gray-700"
                     >
                         Dashboard
                         <Icon icon="mdi:account" class="text-xl" />
@@ -74,6 +79,8 @@
                 </div>
             </div>
         </nav>
+
+        <ScrollToTop />
         <main class="min-h-screen">
             <slot />
         </main>
@@ -156,6 +163,7 @@
 import { Icon } from '@iconify/vue';
 import { Link, usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
+import ScrollToTop from '@/Components/ScrollToTop.vue';
 
 const appName = usePage().props.appName;
 const websiteSetting = computed(() => usePage().props.websiteSetting);
