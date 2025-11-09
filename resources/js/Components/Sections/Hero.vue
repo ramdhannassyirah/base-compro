@@ -1,5 +1,5 @@
 <template>
-    <section class="relative mx-auto max-w-7xl">
+    <section class="relative mx-auto mt-8 max-w-7xl">
         <!-- Background Image -->
         <div class="absolute inset-0 mx-4">
             <img
@@ -21,27 +21,11 @@
             >
                 {{ appName }}
             </h1>
-
-            <div
-                class="absolute bottom-10 left-10 flex h-40 w-64 cursor-pointer items-center justify-center overflow-hidden rounded-2xl bg-white/40 p-2 shadow-lg transition hover:scale-105"
-            >
-                <img
-                    src="https://plus.unsplash.com/premium_photo-1670360414483-64e6d9ba9038?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=500"
-                    alt="Preview"
-                    class="h-full w-full rounded-lg object-cover"
-                />
-                <div
-                    class="absolute inset-0 flex items-center justify-center bg-black/25 font-semibold text-white"
-                >
-                    <Icon icon="lucide:play" class="h-8 w-8" />
-                </div>
-            </div>
         </div>
     </section>
 </template>
 
 <script setup>
-import { Icon } from '@iconify/vue';
 import { usePage } from '@inertiajs/vue3';
 import { onMounted, ref, nextTick } from 'vue';
 import { gsap } from 'gsap';
