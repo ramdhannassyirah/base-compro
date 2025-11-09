@@ -9,7 +9,7 @@
                         v-if="websiteSetting.logo"
                         :src="`/storage/${websiteSetting.logo}`"
                         alt="Logo"
-                        class="h-10 w-auto object-contain"
+                        class="h-14 w-auto object-contain"
                     />
                     <h1 v-else class="text-xl font-semibold">{{ appName }}</h1>
                 </div>
