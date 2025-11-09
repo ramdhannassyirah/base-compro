@@ -41,16 +41,7 @@
                         Product
                     </Link>
 
-                    <Link
-                        href="/testimonial"
-                        :class="
-                            $page.url.startsWith('/testimonial')
-                                ? 'border-b-2 border-black pb-1'
-                                : ''
-                        "
-                    >
-                        Testimonial
-                    </Link>
+                    <a href="#testimonial"> Testimonial </a>
 
                     <Link
                         href="/about"
