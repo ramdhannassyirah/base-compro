@@ -3,12 +3,9 @@
     <AuthenticatedLayout>
         <BaseTable :columns="columns" :rows="rows">
             <template #actions>
-                <button
-                    @click="showModal = true"
-                    class="rounded bg-blue-600 px-4 py-2 text-white"
-                >
+                <PrimaryButton @click="showModal = true">
                     Tambah Data
-                </button>
+                </PrimaryButton>
             </template>
 
             <template #header-no="{ column }">
@@ -87,7 +84,7 @@
                     <InputError class="mt-2" :message="Form.errors.thumbnail" />
                 </div>
                 <div class="">
-                    <InputLabel for="title" value="Title" />
+                    <InputLabel for="title" value="Judul" />
                     <TextInput
                         type="text"
                         id="title"
@@ -97,7 +94,7 @@
                     <InputError class="mt-2" :message="Form.errors.title" />
                 </div>
                 <div class="">
-                    <InputLabel for="description" value="Description" />
+                    <InputLabel for="description" value="Deskripsi" />
                     <TextInput
                         type="text"
                         id="description"
@@ -151,6 +148,7 @@ import { computed, ref } from 'vue';
 import TextInput from '@/Components/TextInput.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import InputError from '@/Components/InputError.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 
 const props = defineProps({
     articles: Object,
@@ -169,8 +167,8 @@ const Form = useForm({
 const columns = [
     { label: 'No', key: 'no' },
     { label: 'thumbnail', key: 'thumbnail' },
-    { label: 'title', key: 'title' },
-    { label: 'description', key: 'description' },
+    { label: 'Judul', key: 'title' },
+    { label: 'Deskripsi', key: 'description' },
     { label: 'Aksi', key: 'action' },
 ];
 

@@ -3,12 +3,12 @@
     <AuthenticatedLayout>
         <BaseTable :columns="columns" :rows="rows">
             <template #actions>
-                <button
+                <PrimaryButton
                     @click="showModal = true"
                     class="rounded bg-blue-600 px-4 py-2 text-white"
                 >
                     Tambah Data
-                </button>
+                </PrimaryButton>
             </template>
 
             <template #header-no="{ column }">
@@ -87,7 +87,7 @@
         >
             <div class="space-y-4">
                 <div class="">
-                    <InputLabel for="name" value="Name" />
+                    <InputLabel for="name" value="Nama" />
                     <TextInput
                         type="text"
                         id="name"
@@ -98,7 +98,7 @@
                 </div>
 
                 <div class="">
-                    <InputLabel for="position" value="Position" />
+                    <InputLabel for="position" value="Jabatan / Perusahaan" />
                     <TextInput
                         type="text"
                         id="position"
@@ -109,7 +109,7 @@
                 </div>
 
                 <div class="">
-                    <InputLabel for="stars" value="stars" />
+                    <InputLabel for="stars" value="Bintang" />
                     <TextInput
                         type="number"
                         id="stars"
@@ -126,13 +126,14 @@
                 </div>
 
                 <div class="">
-                    <InputLabel for="content" value="Content" />
-                    <TextInput
+                    <InputLabel for="content" value="Pesan" />
+                    <textarea
                         type="text"
                         id="content"
-                        class="w-full rounded border p-2"
+                        rows="4"
+                        class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                         v-model="Form.content"
-                    />
+                    ></textarea>
                     <InputError class="mt-2" :message="Form.errors.content" />
                 </div>
             </div>
@@ -164,6 +165,7 @@ import { computed, ref } from 'vue';
 import TextInput from '@/Components/TextInput.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import InputError from '@/Components/InputError.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 
 const props = defineProps({
     testimonials: Object,
@@ -183,10 +185,10 @@ const Form = useForm({
 
 const columns = [
     { label: 'No', key: 'no' },
-    { label: 'name', key: 'name' },
-    { label: 'position', key: 'position' },
-    { label: 'content', key: 'content' },
-    { label: 'stars', key: 'stars' },
+    { label: 'Nama', key: 'name' },
+    { label: 'Jabatan / Perusahaan', key: 'position' },
+    { label: 'Pesan', key: 'content' },
+    { label: 'Bintang', key: 'stars' },
     { label: 'Aksi', key: 'action' },
 ];
 
