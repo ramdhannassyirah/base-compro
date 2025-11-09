@@ -9,7 +9,7 @@
         <div
             class="flex h-20 w-20 items-center justify-center justify-self-center rounded-full bg-gray-200"
         >
-            <Icon icon="mdi:book" class="text-5xl text-gray-500" />
+            <Icon :icon="icon" class="text-5xl text-gray-500" />
         </div>
     </div>
 </template>
@@ -22,6 +22,7 @@ defineProps({
     title: {
         type: String,
     },
+    icon: Object,
 });
 
 import { Icon } from '@iconify/vue';

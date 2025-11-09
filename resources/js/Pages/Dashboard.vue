@@ -15,13 +15,27 @@ defineProps({
     <AuthenticatedLayout>
         <div class="">
             <div class="grid grid-cols-4 gap-4">
-                <InformationCard :count="articles" :title="'Total Articles'" />
+                <InformationCard
+                    :count="articles"
+                    :icon="'ix:product'"
+                    :title="'Total Products'"
+                />
+                <InformationCard
+                    :count="articles"
+                    :icon="'material-symbols:article-rounded'"
+                    :title="'Total Articles'"
+                />
                 <InformationCard
                     :count="testimonials"
                     :title="'Total Testimonial'"
+                    :icon="'dashicons:testimonial'"
                 />
-                <InformationCard :count="articles" :title="'Total Articles'" />
-                <InformationCard :count="articles" :title="'Total Articles'" />
+
+                <InformationCard
+                    :count="2"
+                    :icon="'mdi:account'"
+                    :title="'Total User'"
+                />
             </div>
         </div>
     </AuthenticatedLayout>

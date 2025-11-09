@@ -54,12 +54,12 @@ class ArticleController extends Controller
         {
             $data = $request->validated();
 
-            if ($request->hasFile('thumbnail')) {
-                if ($article->thumbnail) {
-                    Storage::disk('public')->delete($article->thumbnail);
+          if ($request->hasFile('thumbnail')) {
+                    if ($article->thumbnail) {
+                        Storage::disk('public')->delete($article->thumbnail);
+                    }
+                    $data['thumbnail'] = $request->file('thumbnail')->store('thumbnails', 'public');
                 }
-                $data['thumbnail'] = $request->file('thumbnail')->store('thumbnails', 'public');
-            }
 
             $article->update($data);
 
