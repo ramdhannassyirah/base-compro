@@ -51,8 +51,8 @@ const showingNavigationDropdown = ref(false);
                     </BaseLink>
                 </div>
                 <BaseLink
-                    :href="route('admin.article.index')"
-                    :active="route().current('admin.article.index')"
+                    :href="route('admin.setting.index')"
+                    :active="route().current('admin.setting.index')"
                     :icon="'weui:setting-filled'"
                 >
                     Setting

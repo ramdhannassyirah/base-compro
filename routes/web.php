@@ -3,8 +3,6 @@
 // BE
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
-
-//FE
 use App\Http\Controllers\FrontendController;
 
 // GE
@@ -15,6 +13,7 @@ use Inertia\Inertia;
 // ADMIN
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\SettingController;
 
 Route::get('welcome', function () {
     return Inertia::render('Welcome', [
@@ -27,21 +26,23 @@ Route::get('welcome', function () {
 
 
 Route::get('/', [FrontendController::class, 'index']);
-
 Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-
-
 });
 
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('article', ArticleController::class);
     Route::resource('testimonial', TestimonialController::class);
+
+    // Website Setting
+    Route::get('setting', [SettingController::class, 'index'])->name('setting.index');
+    Route::put('setting/{setting}', [SettingController::class, 'update'])->name('setting.update');
+    Route::delete('setting/{setting}/logo', [SettingController::class, 'deleteLogo'])
+    ->name('setting.deleteLogo');
 });
 
 require __DIR__.'/auth.php';

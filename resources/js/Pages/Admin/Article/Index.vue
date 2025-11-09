@@ -75,13 +75,31 @@
             <div class="space-y-4">
                 <div class="">
                     <InputLabel for="thumbnail" value="Thumbnail" />
-                    <TextInput
+                    <input
                         type="file"
                         id="thumbnail"
+                        accept="image/*"
+                        @change="(e) => (Form.thumbnail = e.target.files[0])"
                         class="w-full rounded border p-2"
-                        @change="Form.thumbnail = $event.target.files[0]"
                     />
                     <InputError class="mt-2" :message="Form.errors.thumbnail" />
+
+                    <div
+                        v-if="Form.old_thumbnail && !Form.thumbnail"
+                        class="mb-2"
+                    >
+                        <img
+                            :src="Form.old_thumbnail"
+                            class="h-20 w-20 rounded object-cover"
+                        />
+
+                        <button
+                            @click="removeThumbnail"
+                            class="mt-2 text-sm text-red-600 hover:underline"
+                        >
+                            Hapus Thumbnail
+                        </button>
+                    </div>
                 </div>
                 <div class="">
                     <InputLabel for="title" value="Judul" />
@@ -141,7 +159,7 @@
 import { QuillEditor } from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, useForm } from '@inertiajs/vue3';
+import { Head, router, useForm } from '@inertiajs/vue3';
 import { BaseTable, BaseModal } from '@/Components/Base';
 import { Icon } from '@iconify/vue';
 import { computed, ref } from 'vue';
@@ -185,26 +203,34 @@ const rows = computed(() =>
 );
 
 const submit = () => {
-    if (Form.id) {
-        Form.put(route('admin.article.update', Form.id), {
+    Form.transform((data) => {
+        if (!data.thumbnail) {
+            delete data.thumbnail;
+        }
+
+        if (Form.id) {
+            data._method = 'PUT';
+        }
+
+        return data;
+    }).post(
+        Form.id
+            ? route('admin.article.update', Form.id)
+            : route('admin.article.store'),
+        {
+            forceFormData: true,
             preserveScroll: true,
-            preserveState: true,
-            onError: (errors) => {
-                console.log(errors); // tampilkan semua error
-            },
-            onSuccess: () => Form.reset(),
-        });
-    } else {
-        Form.post(route('admin.article.store'), {
-            preserveScroll: true,
-            preserveState: true,
-            onError: (errors) => console.log(errors),
             onSuccess: () => {
-                Form.reset();
+                resetForm();
                 showModal.value = false;
             },
-        });
-    }
+        },
+    );
+};
+
+const removeThumbnail = () => {
+    Form.thumbnail = null;
+    Form.old_thumbnail = null;
 };
 
 const edit = (item) => {
@@ -213,7 +239,8 @@ const edit = (item) => {
     Form.title = item.title;
     Form.description = item.description;
     Form.content = item.content;
-    Form.thumbnail = item.thumbnail ?? null;
+    Form.thumbnail = null;
+    Form.old_thumbnail = item.thumbnail;
 };
 
 const deleteId = (id) => {
