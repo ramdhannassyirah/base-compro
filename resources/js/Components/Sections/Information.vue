@@ -3,19 +3,19 @@
         <div
             class="mx-auto grid max-w-7xl items-center justify-items-center gap-4 md:grid-cols-4"
         >
-            <div class="text-start">
+            <div class="text-center">
                 <h1 ref="num1" class="text-7xl font-semibold">0</h1>
                 <p class="text-lg font-semibold">Products</p>
             </div>
-            <div class="text-start">
+            <div class="text-center">
                 <h1 ref="num2" class="text-7xl font-semibold">0</h1>
                 <p class="text-lg font-semibold">Articles</p>
             </div>
-            <div class="text-start">
+            <div class="text-center">
                 <h1 ref="num3" class="text-7xl font-semibold">0</h1>
                 <p class="text-lg font-semibold">Clients</p>
             </div>
-            <div class="text-start">
+            <div class="text-center">
                 <h1 ref="num4" class="text-7xl font-semibold">0</h1>
                 <p class="text-lg font-semibold">Testimonials</p>
             </div>
@@ -43,7 +43,7 @@ const num4 = ref(null);
 const counters = [
     { el: num1, end: 50 },
     { el: num2, end: 10 },
-    { el: num3, end: props.testimonialCount },
+    { el: num3, end: 180 },
     { el: num4, end: props.testimonialCount },
 ];
 
