@@ -67,6 +67,12 @@
                         >
                             Tentang Kami
                         </Link>
+                        <Link
+                            href="#contact"
+                            class="transition-all duration-300 hover:border-b-2 hover:border-black"
+                        >
+                            Kontak Kami
+                        </Link>
                     </div>
                     <Link
                         v-if="isAuthenticated"

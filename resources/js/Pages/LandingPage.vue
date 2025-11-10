@@ -10,6 +10,7 @@
             :articleCount="articleCount"
         />
         <About />
+        <Contact />
         <Testimonial id="testimonial" :testimonials="testimonials" />
     </AppLayout>
 </template>
@@ -22,6 +23,7 @@ import {
     About,
     Testimonial,
     ProductCarousel,
+    Contact,
 } from '@/Components/Sections';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { Head } from '@inertiajs/vue3';

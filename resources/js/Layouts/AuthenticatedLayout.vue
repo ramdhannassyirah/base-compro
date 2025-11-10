@@ -33,6 +33,8 @@ const showingNavigationDropdown = ref(false);
                         Dashboard
                     </BaseLink>
 
+                    <p class="text-sm text-gray-400">Konten</p>
+
                     <BaseLink
                         :href="route('admin.category.index')"
                         :active="route().current('admin.category.index')"
@@ -62,6 +64,14 @@ const showingNavigationDropdown = ref(false);
                         :icon="'dashicons:testimonial'"
                     >
                         Testimonial
+                    </BaseLink>
+                    <p class="text-sm text-gray-400">Komunikasi</p>
+                    <BaseLink
+                        :href="route('admin.contact.index')"
+                        :active="route().current('admin.contact.index')"
+                        :icon="'material-symbols:inbox'"
+                    >
+                        Inbox
                     </BaseLink>
                 </div>
                 <BaseLink

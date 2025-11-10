@@ -35,9 +35,9 @@
                     </p>
 
                     <button
-                        class="fade-item flex w-max items-center rounded-xl bg-black px-6 py-3 text-lg font-medium text-white transition duration-300 hover:bg-gray-800"
+                        class="fade-item flex w-max items-center rounded-lg bg-black px-6 py-3 text-lg font-medium text-white transition duration-300 hover:bg-gray-800"
                     >
-                        About Us
+                        Tentang Kami
                     </button>
                 </div>
             </div>

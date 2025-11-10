@@ -1,4 +1,5 @@
 export { default as About } from './About.vue';
+export { default as Contact } from './Contact.vue';
 export { default as Hero } from './Hero.vue';
 export { default as Information } from './Information.vue';
 export { default as ProductCarousel } from './ProductCarousel.vue';

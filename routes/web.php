@@ -16,6 +16,8 @@ use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ContactController;
+
 
 
 Route::get('welcome', function () {
@@ -30,6 +32,7 @@ Route::get('welcome', function () {
 
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -49,6 +52,8 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
     Route::resource('category', CategoryController::class);
     Route::resource('product', ProductController::class);
+    Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
+    Route::delete('contact/{contact}', [ContactController::class, 'destroy'])->name('contact.destroy');
 
 });
 
