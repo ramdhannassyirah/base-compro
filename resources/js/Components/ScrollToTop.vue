@@ -1,12 +1,22 @@
 <template>
     <transition name="fade">
-        <button
-            v-if="visible"
-            @click="scrollTop"
-            class="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-black text-white shadow-lg duration-300 hover:bg-gray-600"
-        >
-            <Icon icon="stash:arrow-up-solid" class="text-3xl" />
-        </button>
+        <div v-if="visible" class="fixed bottom-6 right-6 z-50 space-y-2">
+            <button
+                @click="scrollTop"
+                class="flex h-14 w-14 items-center justify-center rounded-full bg-black text-white shadow-lg duration-300 hover:bg-gray-600"
+            >
+                <Icon icon="stash:arrow-up-solid" class="text-3xl" />
+            </button>
+
+            <a
+                :href="urlWA"
+                target="_blank"
+                class="flex h-14 w-14 items-center justify-center rounded-full bg-green-600 text-white shadow-lg duration-300 hover:bg-gray-600"
+                rel="noopener noreferrer"
+            >
+                <Icon icon="mdi:whatsapp" class="text-3xl" />
+            </a>
+        </div>
     </transition>
 </template>
 
@@ -15,6 +25,7 @@ import { Icon } from '@iconify/vue';
 import { ref, onMounted, onUnmounted } from 'vue';
 
 const visible = ref(false);
+const urlWA = 'https://wa.me/6281299999999';
 
 const onScroll = () => {
     visible.value = window.scrollY > 200;
