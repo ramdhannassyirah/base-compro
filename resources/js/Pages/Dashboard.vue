@@ -7,6 +7,7 @@ defineProps({
     articles: Object,
     testimonials: Object,
     categories: Object,
+    products: Object,
 });
 </script>
 
@@ -17,7 +18,7 @@ defineProps({
         <div class="">
             <div class="grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
                 <InformationCard
-                    :count="articles"
+                    :count="products"
                     :icon="'ix:product'"
                     :title="'Total Products'"
                 />

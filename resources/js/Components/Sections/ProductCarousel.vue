@@ -6,7 +6,6 @@
         <Swiper
             :modules="[Autoplay]"
             :space-between="20"
-            :centered-slides="true"
             :autoplay="{
                 delay: 2500,
                 disableOnInteraction: false,
@@ -26,13 +25,13 @@
                     slidesPerView: 3,
                 },
                 1440: {
-                    slidesPerView: 5,
+                    slidesPerView: 4,
                 },
             }"
             :pagination="{ clickable: true }"
         >
-            <SwiperSlide class="px-4" v-for="i in 20" :key="i">
-                <ProductCard />
+            <SwiperSlide class="px-4" v-for="item in products" :key="item">
+                <ProductCard :product="item" />
             </SwiperSlide>
         </Swiper>
     </section>
@@ -43,6 +42,10 @@ import ProductCard from '../ProductCard.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
+
+const props = defineProps({
+    products: Object,
+});
 </script>
 
 <style scoped></style>

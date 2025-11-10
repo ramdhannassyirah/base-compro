@@ -30,6 +30,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const props = defineProps({
     testimonialCount: Number,
+    productCount: Number,
+    articleCount: Number,
 });
 
 gsap.registerPlugin(ScrollTrigger);
@@ -41,8 +43,8 @@ const num3 = ref(null);
 const num4 = ref(null);
 
 const counters = [
-    { el: num1, end: 50 },
-    { el: num2, end: 10 },
+    { el: num1, end: props.productCount },
+    { el: num2, end: props.articleCount },
     { el: num3, end: 180 },
     { el: num4, end: props.testimonialCount },
 ];

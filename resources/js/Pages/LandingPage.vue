@@ -2,9 +2,13 @@
     <Head title="Beranda" />
     <AppLayout>
         <Hero />
-        <ProductCarousel />
+        <ProductCarousel :products="products" />
         <Products />
-        <Information :testimonialCount="testimonialCount" />
+        <Information
+            :testimonialCount="testimonialCount"
+            :productCount="productCount"
+            :articleCount="articleCount"
+        />
         <About />
         <Testimonial id="testimonial" :testimonials="testimonials" />
     </AppLayout>
@@ -25,6 +29,10 @@ import { Head } from '@inertiajs/vue3';
 defineProps({
     testimonials: Object,
     testimonialCount: Number,
+    products: Object,
+    productCount: Number,
+    articles: Object,
+    articleCount: Number,
 });
 </script>
 

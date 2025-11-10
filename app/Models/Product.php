@@ -32,10 +32,9 @@ class Product extends Model
         return $this->hasOne(ProductPhoto::class)->where('is_main', true);
     }
 
-     public function getPhotosUrlAttribute()
+   public function getPhotosUrlAttribute()
     {
-        return $this->photos->map(function($photo) {
-            return Storage::disk('public')->url($photo->photo_path);
-        });
+        return $this->photos->map(fn($photo) => Storage::disk('public')->url($photo->photo_path))->toArray();
     }
+
 }

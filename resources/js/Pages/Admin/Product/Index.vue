@@ -43,6 +43,16 @@
                 <div class="max-w-[300px] truncate">{{ row.name }}</div>
             </template>
 
+            <template #header-price="{ column }">
+                <div class="max-w-[300px]">{{ column.label }}</div>
+            </template>
+
+            <template #cell-price="{ row }">
+                <div class="max-w-[300px] truncate">
+                    {{ formatIDR(row.price) }}
+                </div>
+            </template>
+
             <template #header-action="{ column }">
                 <div class="w-12 text-center">{{ column.label }}</div>
             </template>
@@ -179,6 +189,9 @@ import TextInput from '@/Components/TextInput.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
+import { useCurrency } from '@/Composables/useCurrency';
+
+const { formatIDR } = useCurrency();
 
 const props = defineProps({
     products: {
@@ -202,8 +215,6 @@ const Form = useForm({
     category_id: 1,
 });
 
-console.log(props.products);
-
 const columns = [
     { label: 'No', key: 'no' },
     { label: 'Foto', key: 'photos' },
@@ -224,6 +235,8 @@ const rows = computed(() =>
         action: item.id,
     })),
 );
+
+console.log(props.products);
 
 function handlePhotos(event) {
     Form.photos = Array.from(event.target.files);

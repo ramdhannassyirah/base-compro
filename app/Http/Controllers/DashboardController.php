@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Models\Testimonial;
 use App\Models\Category;
 use Inertia\Inertia;
+use App\Models\Product;
 
 class DashboardController extends Controller
 {
@@ -15,11 +16,13 @@ class DashboardController extends Controller
         $articles = Article::count();
         $testimonials = Testimonial::count();
         $categories = Category::count();
+        $products = Product::count();
 
         return Inertia::render('Dashboard', [
             'articles' => $articles,
             'testimonials' => $testimonials,
-            'categories' => $categories
+            'categories' => $categories,
+            'products' => $products
         ]);
     }
 }
