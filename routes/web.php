@@ -15,6 +15,8 @@ use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
+
 
 Route::get('welcome', function () {
     return Inertia::render('Welcome', [
@@ -46,6 +48,8 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     ->name('setting.deleteLogo');
 
     Route::resource('category', CategoryController::class);
+    Route::resource('product', ProductController::class);
+
 });
 
 require __DIR__.'/auth.php';

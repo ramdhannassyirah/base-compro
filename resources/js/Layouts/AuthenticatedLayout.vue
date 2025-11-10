@@ -41,7 +41,13 @@ const showingNavigationDropdown = ref(false);
                         Category
                     </BaseLink>
 
-                    <BaseLink :icon="'ix:product'"> Products </BaseLink>
+                    <BaseLink
+                        :href="route('admin.product.index')"
+                        :active="route().current('admin.product.index')"
+                        :icon="'ix:product'"
+                    >
+                        Products
+                    </BaseLink>
 
                     <BaseLink
                         :href="route('admin.article.index')"

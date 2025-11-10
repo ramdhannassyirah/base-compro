@@ -14,7 +14,7 @@ class SettingSeeder extends Seeder
     public function run(): void
     {
          Setting::create([
-            'logo' => '/assets/img/dummy-logo.png',
+            'logo' => '',
             'name' => 'Ravora Labs',
             'alamat' => 'Jl. Contoh No.123, Jakarta',
             'telepon' => '+62 812 3456 7890',

@@ -6,6 +6,7 @@ import { Head } from '@inertiajs/vue3';
 defineProps({
     articles: Object,
     testimonials: Object,
+    categories: Object,
 });
 </script>
 
@@ -32,9 +33,9 @@ defineProps({
                 />
 
                 <InformationCard
-                    :count="2"
-                    :icon="'mdi:account'"
-                    :title="'Total User'"
+                    :count="categories"
+                    :icon="'mdi:category'"
+                    :title="'Total Categories'"
                 />
             </div>
         </div>
