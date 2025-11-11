@@ -3,7 +3,18 @@
         <div class="mb-14 text-center">
             <h2 class="text-5xl font-semibold">Highlights of Products</h2>
         </div>
+
+        <!-- Kondisi jika tidak ada product -->
+        <div
+            v-if="!products || products.length === 0"
+            class="py-10 text-center text-gray-500"
+        >
+            <p>Tidak ada produk untuk ditampilkan.</p>
+        </div>
+
+        <!-- Swiper hanya tampil kalau ada produk -->
         <Swiper
+            v-else
             :modules="[Autoplay]"
             :space-between="20"
             :autoplay="{
@@ -30,7 +41,7 @@
             }"
             :pagination="{ clickable: true }"
         >
-            <SwiperSlide class="px-4" v-for="item in products" :key="item">
+            <SwiperSlide class="px-4" v-for="item in products" :key="item.id">
                 <ProductCard :product="item" />
             </SwiperSlide>
         </Swiper>
@@ -44,7 +55,10 @@ import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 
 const props = defineProps({
-    products: Object,
+    products: {
+        type: Array,
+        default: () => [],
+    },
 });
 </script>
 
