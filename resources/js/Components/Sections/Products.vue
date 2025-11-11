@@ -20,7 +20,7 @@
                             All Best Furniture
                         </p>
                         <p
-                            class="mt-2 w-40 text-7xl font-semibold leading-tight text-white"
+                            class="mt-2 w-40 text-5xl md:text-7xl font-semibold leading-tight text-white"
                         >
                             Modern <br />
                             Minimalist

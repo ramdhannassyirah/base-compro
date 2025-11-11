@@ -13,7 +13,12 @@ const showingNavigationDropdown = ref(false);
 <template>
     <div class="lg:flex">
         <aside
-            class="hidden min-h-screen w-56 flex-col border-r bg-white drop-shadow-md lg:flex"
+            :class="
+                showingNavigationDropdown
+                    ? 'translate-x-0'
+                    : '-translate-x-full'
+            "
+            class="fixed left-0 top-0 z-50 min-h-screen w-56 flex-col border-r bg-white drop-shadow-md transition-transform duration-300 lg:static lg:flex lg:translate-x-0"
         >
             <!-- Logo -->
             <div class="flex h-16 items-center justify-center border-b">
@@ -74,13 +79,16 @@ const showingNavigationDropdown = ref(false);
                         Inbox
                     </BaseLink>
                 </div>
-                <BaseLink
-                    :href="route('admin.setting.index')"
-                    :active="route().current('admin.setting.index')"
-                    :icon="'weui:setting-filled'"
-                >
-                    Setting
-                </BaseLink>
+                <div class="space-y-2 pt-4">
+                    <p class="text-sm text-gray-400">Setting</p>
+                    <BaseLink
+                        :href="route('admin.setting.index')"
+                        :active="route().current('admin.setting.index')"
+                        :icon="'weui:setting-filled'"
+                    >
+                        Setting
+                    </BaseLink>
+                </div>
             </nav>
         </aside>
 
@@ -96,7 +104,7 @@ const showingNavigationDropdown = ref(false);
                             >
                                 <Icon icon="mdi:globe" class="text-2xl" />
                             </Link>
-                            <div class="hidden sm:flex sm:items-center">
+                            <div class="flex items-center">
                                 <div class="relative">
                                     <Dropdown align="right" width="48">
                                         <template #trigger>
@@ -146,7 +154,7 @@ const showingNavigationDropdown = ref(false);
                                 </div>
                             </div>
 
-                            <div class="-me-2 flex items-center sm:hidden">
+                            <div class="-me-2 flex items-center lg:hidden">
                                 <button
                                     @click="
                                         showingNavigationDropdown =

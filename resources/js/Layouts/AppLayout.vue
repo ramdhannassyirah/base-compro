@@ -1,10 +1,14 @@
 <template>
     <div>
-        <nav>
+        <nav
+            class="w-full border-b bg-white"
+            :class="fixed ? 'fixed top-0 z-50' : ''"
+        >
             <div
                 class="mx-auto flex max-w-7xl items-center justify-between px-4 py-6"
             >
-                <div>
+                <!-- Logo -->
+                <div class="flex items-center">
                     <img
                         v-if="websiteSetting.logo"
                         :src="`/storage/${websiteSetting.logo}`"
@@ -13,67 +17,59 @@
                     />
                     <h1 v-else class="text-xl font-semibold">{{ appName }}</h1>
                 </div>
-                <div class="flex items-center gap-4">
-                    <div
-                        class="hidden space-x-4 border-2 border-transparent md:flex"
+
+                <!-- Desktop Menu -->
+                <div class="hidden items-center gap-4 md:flex">
+                    <Link
+                        href="/"
+                        :class="
+                            $page.url === '/'
+                                ? 'border-b-2 border-black'
+                                : 'transition-all duration-300 hover:border-b-2 hover:border-black'
+                        "
+                        >Beranda</Link
                     >
-                        <Link
-                            href="/"
-                            :class="
-                                $page.url === '/'
-                                    ? 'border-b-2 border-black'
-                                    : 'transition-all duration-300 hover:border-b-2 hover:border-black'
-                            "
-                        >
-                            Beranda
-                        </Link>
+                    <Link
+                        href="/articles"
+                        :class="
+                            $page.url.startsWith('/articles')
+                                ? 'border-b-2 border-black'
+                                : 'transition-all duration-300 hover:border-b-2 hover:border-black'
+                        "
+                        >Articles</Link
+                    >
+                    <Link
+                        href="/product"
+                        :class="
+                            $page.url.startsWith('/product')
+                                ? 'border-b-2 border-black'
+                                : 'transition-all duration-300 hover:border-b-2 hover:border-black'
+                        "
+                        >Product</Link
+                    >
+                    <a
+                        href="#testimonial"
+                        class="transition-all duration-300 hover:border-b-2 hover:border-black"
+                        >Testimonial</a
+                    >
+                    <Link
+                        href="/about"
+                        :class="
+                            $page.url.startsWith('/about')
+                                ? 'border-b-2 border-black'
+                                : 'transition-all duration-300 hover:border-b-2 hover:border-black'
+                        "
+                        >Tentang Kami</Link
+                    >
+                    <Link
+                        href="#contact"
+                        class="transition-all duration-300 hover:border-b-2 hover:border-black"
+                        >Kontak Kami</Link
+                    >
+                </div>
 
-                        <Link
-                            href="/articles"
-                            :class="
-                                $page.url.startsWith('/articles')
-                                    ? 'border-b-2 border-black'
-                                    : 'transition-all duration-300 hover:border-b-2 hover:border-black'
-                            "
-                        >
-                            Articles
-                        </Link>
-
-                        <Link
-                            href="/product"
-                            :class="
-                                $page.url.startsWith('/product')
-                                    ? 'border-b-2 border-black'
-                                    : 'transition-all duration-300 hover:border-b-2 hover:border-black'
-                            "
-                        >
-                            Product
-                        </Link>
-
-                        <a
-                            href="#testimonial"
-                            class="transition-all duration-300 hover:border-b-2 hover:border-black"
-                        >
-                            Testimonial
-                        </a>
-
-                        <Link
-                            href="/about"
-                            :class="
-                                $page.url.startsWith('/about')
-                                    ? 'border-b-2 border-black'
-                                    : 'transition-all duration-300 hover:border-b-2 hover:border-black'
-                            "
-                        >
-                            Tentang Kami
-                        </Link>
-                        <Link
-                            href="#contact"
-                            class="transition-all duration-300 hover:border-b-2 hover:border-black"
-                        >
-                            Kontak Kami
-                        </Link>
-                    </div>
+                <!-- Mobile Hamburger -->
+                <div class="flex items-center gap-2 md:hidden">
                     <Link
                         v-if="isAuthenticated"
                         href="/dashboard"
@@ -82,7 +78,37 @@
                         Dashboard
                         <Icon icon="mdi:account" class="text-xl" />
                     </Link>
+
+                    <button
+                        @click="showingMobileMenu = !showingMobileMenu"
+                        class="focus:outline-none"
+                    >
+                        <Icon
+                            :icon="showingMobileMenu ? 'mdi:close' : 'mdi:menu'"
+                            class="text-2xl"
+                        />
+                    </button>
                 </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div v-show="showingMobileMenu" class="border-t bg-white md:hidden">
+                <Link href="/" class="block border-b px-4 py-2">Beranda</Link>
+                <Link href="/articles" class="block border-b px-4 py-2"
+                    >Articles</Link
+                >
+                <Link href="/product" class="block border-b px-4 py-2"
+                    >Product</Link
+                >
+                <a href="#testimonial" class="block border-b px-4 py-2"
+                    >Testimonial</a
+                >
+                <Link href="/about" class="block border-b px-4 py-2"
+                    >Tentang Kami</Link
+                >
+                <a href="#contact" class="block border-b px-4 py-2"
+                    >Kontak Kami</a
+                >
             </div>
         </nav>
 
@@ -168,8 +194,18 @@
 <script setup>
 import { Icon } from '@iconify/vue';
 import { Link, usePage } from '@inertiajs/vue3';
-import { computed } from 'vue';
+import { computed, ref, onMounted, onUnmounted } from 'vue';
 import ScrollToTop from '@/Components/ScrollToTop.vue';
+
+const showingMobileMenu = ref(false);
+const fixed = ref(false);
+
+const onScroll = () => {
+    fixed.value = window.scrollY > 80;
+};
+
+onMounted(() => window.addEventListener('scroll', onScroll));
+onUnmounted(() => window.removeEventListener('scroll', onScroll));
 
 const appName = usePage().props.appName;
 const websiteSetting = computed(() => usePage().props.websiteSetting);

@@ -10,7 +10,7 @@
             :articleCount="articleCount"
         />
         <About />
-        <Contact />
+        <Contact id="contact" />
         <Testimonial id="testimonial" :testimonials="testimonials" />
     </AppLayout>
 </template>
