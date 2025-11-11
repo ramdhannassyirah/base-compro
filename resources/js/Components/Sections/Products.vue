@@ -7,7 +7,7 @@
                     class="card-item group relative col-span-2 h-[600px] cursor-pointer overflow-hidden rounded-2xl"
                 >
                     <img
-                        src="https://images.unsplash.com/photo-1616047006789-b7af5afb8c20?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=880"
+                        src="/images/2.avif"
                         alt=""
                         class="h-full w-full rounded-2xl object-cover object-bottom transition-all duration-300 group-hover:scale-125"
                     />
@@ -20,7 +20,7 @@
                             All Best Furniture
                         </p>
                         <p
-                            class="mt-2 w-40 text-5xl md:text-7xl font-semibold leading-tight text-white"
+                            class="mt-2 w-40 text-5xl font-semibold leading-tight text-white md:text-7xl"
                         >
                             Modern <br />
                             Minimalist
@@ -34,7 +34,7 @@
                         class="card-item group relative h-[250px] cursor-pointer overflow-hidden rounded-2xl"
                     >
                         <img
-                            src="https://images.unsplash.com/photo-1664183115678-1a5fc84ee63c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=715"
+                            src="/images/3.avif"
                             alt=""
                             class="h-full w-full rounded-2xl object-cover transition-all duration-300 group-hover:scale-125"
                         />
@@ -58,7 +58,7 @@
                         class="card-item group relative h-[330px] cursor-pointer overflow-hidden rounded-2xl"
                     >
                         <img
-                            src="https://images.unsplash.com/photo-1690489965043-ec15758cce71?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687"
+                            src="/images/4.avif"
                             alt=""
                             class="h-full w-full rounded-2xl object-cover object-bottom transition-all duration-300 group-hover:scale-125"
                         />

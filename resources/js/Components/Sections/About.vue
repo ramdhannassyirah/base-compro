@@ -4,7 +4,7 @@
             <div class="grid items-center gap-10 lg:grid-cols-3">
                 <div ref="imageRef" class="col-span-2">
                     <img
-                        src="https://images.unsplash.com/photo-1605774337664-7a846e9cdf17?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1074"
+                        src="/images/5.avif"
                         alt="Modern interior design with Poliform furniture"
                         class="h-full w-full rounded-xl object-cover"
                     />
