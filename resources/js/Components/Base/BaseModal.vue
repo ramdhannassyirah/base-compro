@@ -3,7 +3,7 @@
     <transition name="fade">
         <div
             v-if="modelValue"
-            class="fixed inset-0 z-40 bg-black/40"
+            class="fixed inset-0 z-50 bg-black/40"
             @click="close"
         ></div>
     </transition>
