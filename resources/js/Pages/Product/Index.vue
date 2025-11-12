@@ -1,23 +1,23 @@
 <template>
-    <Head title="Articles" />
+    <Head title="Produts" />
     <AppLayout>
         <div class="mx-auto mb-20 grid max-w-7xl grid-cols-3 gap-6 px-4">
-            <ArticleCard
-                v-for="article in articles"
-                :key="article.id"
-                :article="article"
+            <ProductCard
+                v-for="product in products"
+                :key="product.id"
+                :product="product"
             />
         </div>
     </AppLayout>
 </template>
 
 <script setup>
-import ArticleCard from '@/Components/ArticleCard.vue';
+import ProductCard from '@/Components/ProductCard.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { Head } from '@inertiajs/vue3';
 
 defineProps({
-    articles: Object,
+    products: Object,
 });
 </script>
 

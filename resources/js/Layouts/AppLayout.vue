@@ -30,6 +30,15 @@
                         >Beranda</Link
                     >
                     <Link
+                        href="/products"
+                        :class="
+                            $page.url.startsWith('/products')
+                                ? 'border-b-2 border-black'
+                                : 'transition-all duration-300 hover:border-b-2 hover:border-black'
+                        "
+                        >Products</Link
+                    >
+                    <Link
                         href="/articles"
                         :class="
                             $page.url.startsWith('/articles')
@@ -38,20 +47,7 @@
                         "
                         >Articles</Link
                     >
-                    <Link
-                        href="/product"
-                        :class="
-                            $page.url.startsWith('/product')
-                                ? 'border-b-2 border-black'
-                                : 'transition-all duration-300 hover:border-b-2 hover:border-black'
-                        "
-                        >Product</Link
-                    >
-                    <a
-                        href="#testimonial"
-                        class="transition-all duration-300 hover:border-b-2 hover:border-black"
-                        >Testimonial</a
-                    >
+
                     <Link
                         href="/about"
                         :class="
@@ -60,11 +56,6 @@
                                 : 'transition-all duration-300 hover:border-b-2 hover:border-black'
                         "
                         >Tentang Kami</Link
-                    >
-                    <Link
-                        href="#contact"
-                        class="transition-all duration-300 hover:border-b-2 hover:border-black"
-                        >Kontak Kami</Link
                     >
 
                     <Link
@@ -106,17 +97,11 @@
                 <Link href="/articles" class="block border-b px-4 py-2"
                     >Articles</Link
                 >
-                <Link href="/product" class="block border-b px-4 py-2"
+                <Link href="/products" class="block border-b px-4 py-2"
                     >Product</Link
-                >
-                <a href="#testimonial" class="block border-b px-4 py-2"
-                    >Testimonial</a
                 >
                 <Link href="/about" class="block border-b px-4 py-2"
                     >Tentang Kami</Link
-                >
-                <a href="#contact" class="block border-b px-4 py-2"
-                    >Kontak Kami</a
                 >
             </div>
         </nav>
