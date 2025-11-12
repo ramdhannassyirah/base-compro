@@ -162,6 +162,7 @@ import TextInput from '@/Components/TextInput.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
+import { toast } from 'vue3-toastify';
 
 const props = defineProps({
     articles: Object,
@@ -216,6 +217,7 @@ const submit = () => {
             forceFormData: true,
             preserveScroll: true,
             onSuccess: () => {
+                toast.success('Data berhasil disimpan');
                 resetForm();
                 showModal.value = false;
             },
@@ -234,7 +236,11 @@ const edit = (item) => {
 };
 
 const deleteId = (id) => {
-    Form.delete(route('admin.article.destroy', id));
+    Form.delete(route('admin.article.destroy', id), {
+        onSuccess: () => {
+            toast.success('Data berhasil dihapus');
+        },
+    });
 };
 
 // function handleFileUpload(event) {

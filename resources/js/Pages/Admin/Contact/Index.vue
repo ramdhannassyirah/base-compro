@@ -58,6 +58,7 @@ import { Head, useForm } from '@inertiajs/vue3';
 import { BaseTable } from '@/Components/Base';
 import { Icon } from '@iconify/vue';
 import { computed } from 'vue';
+import { toast } from 'vue3-toastify';
 
 const props = defineProps({
     contacts: Object,
@@ -90,6 +91,10 @@ const rows = computed(() =>
 );
 
 const deleteId = (id) => {
-    form.delete(route('admin.contact.destroy', id));
+    form.delete(route('admin.contact.destroy', id), {
+        onSuccess: () => {
+            toast.success('Data berhasil dihapus');
+        },
+    });
 };
 </script>

@@ -190,6 +190,7 @@ import InputLabel from '@/Components/InputLabel.vue';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import { useCurrency } from '@/Composables/useCurrency';
+import { toast } from 'vue3-toastify';
 
 const { formatIDR } = useCurrency();
 
@@ -253,7 +254,9 @@ const submit = () => {
                 console.log(errors);
             },
             onSuccess: () => {
-                (Form.reset(), (showModal.value = false));
+                (Form.reset(),
+                    (showModal.value = false),
+                    toast.success('Data berhasil diedit'));
             },
         });
     } else {
@@ -264,6 +267,7 @@ const submit = () => {
             onSuccess: () => {
                 Form.reset();
                 showModal.value = false;
+                toast.success('Data berhasil disimpan');
             },
         });
     }
@@ -279,7 +283,11 @@ const edit = (item) => {
 };
 
 const deleteId = (id) => {
-    Form.delete(route('admin.product.destroy', id));
+    Form.delete(route('admin.product.destroy', id), {
+        onSuccess: () => {
+            toast.success('Data berhasil dihapus');
+        },
+    });
 };
 
 const resetForm = () => {

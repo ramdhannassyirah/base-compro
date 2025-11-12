@@ -106,6 +106,7 @@ import TextInput from '@/Components/TextInput.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, router } from '@inertiajs/vue3';
 import { ref } from 'vue';
+import { toast } from 'vue3-toastify';
 
 const props = defineProps({
     setting: Object,
@@ -148,7 +149,9 @@ const submit = () => {
             forceFormData: true,
             preserveScroll: true,
             onError: (err) => console.log(err),
-            onSuccess: () => console.log('Updated'),
+            onSuccess: () => {
+                toast.success('Data berhasil update');
+            },
         },
     );
 };
@@ -159,6 +162,7 @@ const deleteLogo = () => {
         onSuccess: () => {
             settings.value.logo = null;
             logoPreview.value = null;
+            toast.success('Logo berhasil dihapus');
         },
     });
 };

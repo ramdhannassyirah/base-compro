@@ -166,6 +166,7 @@ import TextInput from '@/Components/TextInput.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
+import { toast } from 'vue3-toastify';
 
 const props = defineProps({
     testimonials: Object,
@@ -213,7 +214,9 @@ const submit = () => {
                 console.log(errors); // tampilkan semua error
             },
             onSuccess: () => {
-                (Form.reset(), (showModal.value = false));
+                (Form.reset(),
+                    (showModal.value = false),
+                    toast.success('Data berhasil diedit'));
             },
         });
     } else {
@@ -224,6 +227,7 @@ const submit = () => {
             onSuccess: () => {
                 Form.reset();
                 showModal.value = false;
+                toast.success('Data berhasil disimpan');
             },
         });
     }
@@ -239,7 +243,11 @@ const edit = (item) => {
 };
 
 const deleteId = (id) => {
-    Form.delete(route('admin.testimonial.destroy', id));
+    Form.delete(route('admin.testimonial.destroy', id), {
+        onSuccess: () => {
+            toast.success('Data berhasil dihapus');
+        },
+    });
 };
 
 const resetForm = () => {
