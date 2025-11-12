@@ -1,7 +1,7 @@
 <template>
     <Head title="Produts" />
     <AppLayout>
-        <div class="mx-auto mb-20 grid max-w-7xl grid-cols-3 gap-6 px-4">
+        <div class="mx-auto mb-20 grid max-w-7xl gap-6 px-4 md:grid-cols-3">
             <ProductCard
                 v-for="product in products"
                 :key="product.id"

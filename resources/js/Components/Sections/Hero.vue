@@ -17,7 +17,7 @@
         >
             <h1
                 ref="titleRef"
-                class="mb-6 text-center text-7xl font-extrabold uppercase"
+                class="mb-6 text-center text-5xl font-extrabold uppercase md:text-7xl"
             >
                 {{ appName }}
             </h1>
