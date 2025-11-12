@@ -66,6 +66,15 @@
                         class="transition-all duration-300 hover:border-b-2 hover:border-black"
                         >Kontak Kami</Link
                     >
+
+                    <Link
+                        v-if="isAuthenticated"
+                        href="/dashboard"
+                        class="flex items-center gap-2 rounded-xl border px-4 py-2 transition-all duration-300 hover:border-gray-700"
+                    >
+                        Dashboard
+                        <Icon icon="mdi:account" class="text-xl" />
+                    </Link>
                 </div>
 
                 <!-- Mobile Hamburger -->
