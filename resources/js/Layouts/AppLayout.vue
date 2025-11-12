@@ -122,7 +122,7 @@
         </nav>
 
         <ScrollToTop />
-        <main class="min-h-screen">
+        <main class="mt-8 min-h-screen">
             <slot />
         </main>
         <footer class="w-full bg-black pt-12 text-gray-300">

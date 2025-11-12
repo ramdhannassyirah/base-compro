@@ -29,9 +29,49 @@ class FrontendController extends Controller
             'testimonials' => $testimonials,
             'testimonialCount' => $testimonialCount,
             'articles' => $articles,
-            'articleCount' => $articleCount,    
+            'articleCount' => $articleCount,
             'products' => $products,
             'productCount' => $productCount
         ]);
     }
+
+
+    public function ArticleIndex(){
+       $articles = Article::with('author')->latest()->get()->map(function ($article) {
+            return [
+                'id' => $article->id,
+                'title' => $article->title,
+                'description' => $article->description,
+                'slug' => $article->slug,
+                'thumbnail' => $article->thumbnail_url,
+                'content' => $article->content,
+                'author' =>   $article->author->name,
+                'created_at' => $article->created_at->format('d M Y'),
+            ];
+        });
+        return Inertia::render('Article/Index',[
+            'articles' => $articles,
+        ]);
+    }
+
+    public function ArticleShow($slug)
+    {
+        $article = Article::with('author')->where('slug', $slug)->firstOrFail();
+
+        return Inertia::render('Article/Show', [
+            'articles' => [
+                'id' => $article->id,
+                'title' => $article->title,
+                'description' => $article->description,
+                'slug' => $article->slug,
+                'thumbnail' => $article->thumbnail_url,
+                'content' => $article->content,
+                'author' => [
+                    'name' => $article->author->name,
+                ],
+                'created_at' => $article->created_at->format('d M Y'),
+            ],
+        ]);
+    }
+
 }
