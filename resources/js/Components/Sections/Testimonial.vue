@@ -12,7 +12,7 @@
             v-if="!testimonials || testimonials.length === 0"
             class="py-20 text-center text-gray-400"
         >
-            Belum ada testimoni
+            Tidak ada testimoni untuk ditampilkan
         </div>
 
         <!-- Jika ada testimonial -->

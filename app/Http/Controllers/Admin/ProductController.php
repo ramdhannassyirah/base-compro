@@ -12,17 +12,17 @@ class ProductController extends Controller
 {
     public function index()
     {
-     $products = Product::with(['category', 'photos']) 
+     $products = Product::with(['category', 'photos'])
     ->latest()
     ->paginate(10)
     ->through(function ($product) {
         return [
             'id' => $product->id,
-            'photos' => $product->photos_url, 
+            'photos' => $product->photos_url,
             'name' => $product->name,
             'description' => $product->description,
             'price' => $product->price,
-            'category' => $product->category ? $product->category->name : '-', 
+            'category' => $product->category ? $product->category->name : '-',
         ];
     });
 
@@ -42,7 +42,13 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'photos.*' => 'image|max:2048',
             'category_id' => 'required',
+        ],[
+            'name.required' => 'Nama produk harus diisi.',
+            'price.required' => 'Harga produk harus diisi.',
+            'category_id.required' => 'Kategori produk harus dipilih.',
+            'photos.*.image' => 'Foto produk harus berupa gambar.',
         ]);
+
 
         $product = Product::create([
             'name'        => $request->name,

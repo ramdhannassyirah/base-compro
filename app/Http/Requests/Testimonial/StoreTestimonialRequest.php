@@ -30,13 +30,13 @@ class StoreTestimonialRequest extends FormRequest
     }
 
 
-    public function message(): array
+    public function messages(): array
     {
         return [
-            'name.required' => 'Name is required',
-            'position.required' => 'Position is required',
-            'content.required' => 'Content is required',
-            'stars.required' => 'Stars is required',
+            'name.required' => 'Nama tidak boleh kosong',
+            'position.required' => 'Jabatan / Perusahaan tidak boleh kosong',
+            'content.required' => 'Pesan tidak boleh kosong',
+            'stars.required' => 'Bintang tidak boleh kosong',
         ];
     }
 }

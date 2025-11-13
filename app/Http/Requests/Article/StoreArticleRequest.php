@@ -22,27 +22,27 @@ class StoreArticleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'thumbnail' => ['required', 'file', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            'thumbnail' => ['required', 'file', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
             'content' => ['required', ''],
         ];
     }
 
-    public function message(): array
+    public function messages(): array
     {
         return [
-            'thumbnail.required' => 'The thumbnail field is required.',
-            'thumbnail.image' => 'The thumbnail must be an image.',
-            'thumbnail.mimes' => 'The thumbnail must be a file of type: jpeg, png, jpg, gif, svg.',
-            'thumbnail.max' => 'The thumbnail may not be greater than 2MB.',
-            'title.required' => 'The title field is required.',
-            'title.string' => 'The title must be a string.',
-            'title.max' => 'The title may not be greater than 255 characters.',
-            'description.required' => 'The description field is required.',
-            'description.string' => 'The description must be a string.',
-            'description.max' => 'The description may not be greater than 255 characters.',
-            'content.required' => 'The content field is required.',
+            'thumbnail.required' => 'Thumbnail tidak boleh kosong.',
+            'thumbnail.image' => 'Thumbnail harus berupa gambar.',
+            'thumbnail.mimes' => 'Thumbnail harus berupa file bertipe: jpeg, png, jpg, webp.',
+            'thumbnail.max' => 'Thumbnail tidak boleh lebih dari 2MB.',
+            'title.required' => 'Judul tidak boleh kosong.',
+            'title.string' => 'Judul harus berupa teks.',
+            'title.max' => 'Judul tidak boleh lebih dari 255 karakter.',
+            'description.required' => 'Deskripsi tidak boleh kosong.',
+            'description.string' => 'Deskripsi harus berupa teks.',
+            'description.max' => 'Deskripsi tidak boleh lebih dari 255 karakter.',
+            'content.required' => 'Konten tidak boleh kosong.',
         ];
     }
 }
