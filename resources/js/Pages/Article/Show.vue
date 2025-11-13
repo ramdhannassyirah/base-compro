@@ -57,7 +57,7 @@ console.log(props.articles);
 
 <style>
 /* opsional: biar konten HTML dari artikel lebih rapi */
-.prose img {
+/* .prose img {
     border-radius: 0.5rem;
-}
+} */
 </style>
