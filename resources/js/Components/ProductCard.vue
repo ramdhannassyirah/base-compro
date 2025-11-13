@@ -1,9 +1,13 @@
 <template>
     <div class="max-w-md overflow-hidden">
         <div
-            class="relative flex w-full items-center justify-center overflow-hidden rounded-lg"
+            class="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-lg"
         >
-            <img :src="product.photos[0]" alt="Hyperion lamp" />
+            <img
+                :src="product.photos[0]"
+                class="h-full w-full object-cover"
+                alt="broken"
+            />
         </div>
         <div>
             <hr class="my-4 border-t-2 border-gray-400" />
