@@ -3,7 +3,7 @@
         <!-- Background Image -->
         <div class="absolute inset-0 mx-4">
             <img
-                src="/images/1.avif"
+                src="/images/1.webp"
                 alt="Contemporary Interior"
                 class="h-full w-full rounded-2xl object-cover"
             />

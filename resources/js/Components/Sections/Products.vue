@@ -7,7 +7,7 @@
                     class="card-item group relative col-span-2 h-[600px] cursor-pointer overflow-hidden rounded-2xl"
                 >
                     <img
-                        src="/images/2.avif"
+                        src="/images/2.webp"
                         alt=""
                         class="h-full w-full rounded-2xl object-cover object-bottom transition-all duration-300 group-hover:scale-125"
                     />
@@ -34,7 +34,7 @@
                         class="card-item group relative h-[250px] cursor-pointer overflow-hidden rounded-2xl"
                     >
                         <img
-                            src="/images/3.avif"
+                            src="/images/3.webp"
                             alt=""
                             class="h-full w-full rounded-2xl object-cover transition-all duration-300 group-hover:scale-125"
                         />
@@ -58,7 +58,7 @@
                         class="card-item group relative h-[330px] cursor-pointer overflow-hidden rounded-2xl"
                     >
                         <img
-                            src="/images/4.avif"
+                            src="/images/4.webp"
                             alt=""
                             class="h-full w-full rounded-2xl object-cover object-bottom transition-all duration-300 group-hover:scale-125"
                         />
