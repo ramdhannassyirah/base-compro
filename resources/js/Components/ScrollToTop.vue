@@ -25,7 +25,8 @@ import { Icon } from '@iconify/vue';
 import { ref, onMounted, onUnmounted } from 'vue';
 
 const visible = ref(false);
-const urlWA = 'https://wa.me/6281299999999';
+const urlWA =
+    'https://api.whatsapp.com/send/?phone=6285156330411&text&type=phone_number&app_absent=0';
 
 const onScroll = () => {
     visible.value = window.scrollY > 200;
