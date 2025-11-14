@@ -6,14 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Category;
 use App\Models\ProductPhoto;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 
 class Product extends Model
 {
+
+    use HasFactory;
+
     protected $table = 'products';
 
     protected $fillable = [
-        'name', 'description', 'price','category_id'
+        'name', 'description', 'price','category_id','slug'
     ];
 
 

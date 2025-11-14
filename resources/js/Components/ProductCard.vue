@@ -1,5 +1,8 @@
 <template>
-    <div class="max-w-md overflow-hidden">
+    <Link
+        :href="route('products.show', product.slug)"
+        class="max-w-md overflow-hidden"
+    >
         <div
             class="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-lg"
         >
@@ -22,11 +25,12 @@
                 {{ formatIDR(product.price) }}
             </p>
         </div>
-    </div>
+    </Link>
 </template>
 
 <script setup>
 import { useCurrency } from '@/Composables/useCurrency';
+import { Link } from '@inertiajs/vue3';
 const { formatIDR } = useCurrency();
 
 defineProps({

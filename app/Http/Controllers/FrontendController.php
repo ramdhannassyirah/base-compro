@@ -20,6 +20,7 @@ class FrontendController extends Controller
                 'name' => $product->name,
                 'price' => $product->price,
                 'photos' => $product->photos_url,
+                'slug' => $product->slug
             ];
         });
         $productCount = Product::count();
@@ -74,40 +75,49 @@ class FrontendController extends Controller
         ]);
     }
 
-     public function ProductIndex(){
-       $products = Product::with(['category', 'photos'])->latest()->get()->map(function ($product) {
-            return [
-            'id' => $product->id,
-            'photos' => $product->photos_url,
-            'name' => $product->name,
-            'description' => $product->description,
-            'price' => $product->price,
-            'category' => $product->category ? $product->category->name : '-',
-            ];
-        });
-        return Inertia::render('Product/Index',[
-            'products' => $products,
-        ]);
-    }
+        public function ProductIndex()
+        {
+            $products = Product::with(['category', 'photos'])
+                ->latest()
+                ->get()
+                ->map(function ($product) {
+                    return [
+                        'id' => $product->id,
+                        'photos' => $product->photos_url,
+                        'name' => $product->name,
+                        'description' => $product->description,
+                        'price' => $product->price,
+                        'category' => $product->category ? $product->category->name : '-',
+                        'slug' => $product->slug,
+                    ];
+                });
 
-    public function ProductShow($slug)
-    {
-        $product = Product::with('author')->where('slug', $slug)->firstOrFail();
+            return Inertia::render('Product/Index', [
+                'products' => $products,
+            ]);
+        }
 
-        return Inertia::render('Product/Show', [
-            'products' => [
+        public function ProductShow($slug)
+        {
+            $product = Product::with(['category', 'photos'])
+                ->where('slug', $slug)
+                ->firstOrFail();
+
+            $productData = [
                 'id' => $product->id,
-                'title' => $product->title,
+                'photos' => $product->photos_url,
+                'name' => $product->name,
                 'description' => $product->description,
+                'price' => $product->price,
+                'category' => $product->category ? $product->category->name : '-',
                 'slug' => $product->slug,
-                'thumbnail' => $product->thumbnail_url,
-                'content' => $product->content,
-                'author' => [
-                    'name' => $product->author->name,
-                ],
-                'created_at' => $product->created_at->format('d M Y'),
-            ],
-        ]);
-    }
+            ];
+
+            return Inertia::render('Product/Show', [
+                'product' => $productData,
+            ]);
+        }
+
+
 
 }

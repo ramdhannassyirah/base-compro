@@ -23,6 +23,7 @@ class ProductController extends Controller
             'description' => $product->description,
             'price' => $product->price,
             'category' => $product->category ? $product->category->name : '-',
+            'slug' => $product->slug
         ];
     });
 
@@ -55,7 +56,10 @@ class ProductController extends Controller
             'description' => $request->description,
             'price'       => $request->price,
             'category_id' => $request->category_id,
+            'slug' => str()->slug($request->name),
         ]);
+
+
 
         if ($request->hasFile('photos')) {
             foreach ($request->file('photos') as $index => $photo) {
@@ -86,6 +90,7 @@ class ProductController extends Controller
             'description' => $request->description,
             'price'       => $request->price,
             'category_id' => $request->category_id,
+            'slug' => str()->slug($request->name),
         ]);
 
         if ($request->hasFile('photos')) {
