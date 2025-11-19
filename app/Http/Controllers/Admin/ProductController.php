@@ -23,6 +23,7 @@ class ProductController extends Controller
             'description' => $product->description,
             'price' => $product->price,
             'category' => $product->category ? $product->category->name : '-',
+            'category_id' => $product->category_id,
             'slug' => $product->slug
         ];
     });
@@ -76,7 +77,7 @@ class ProductController extends Controller
         return back()->with('success', 'Produk berhasil ditambahkan.');
     }
 
-    public function update(Request $request, Product $product)
+   public function update(Request $request, Product $product)
     {
         $request->validate([
             'name' => 'required',
@@ -94,6 +95,14 @@ class ProductController extends Controller
         ]);
 
         if ($request->hasFile('photos')) {
+
+            // Hapus foto lama
+            foreach ($product->photos as $old) {
+                Storage::disk('public')->delete($old->photo_path);
+                $old->delete();
+            }
+
+            // Upload foto baru
             foreach ($request->file('photos') as $index => $photo) {
                 $path = $photo->store('products', 'public');
 
@@ -106,6 +115,7 @@ class ProductController extends Controller
 
         return back()->with('success', 'Produk berhasil diperbarui.');
     }
+
 
 
     public function destroy(Product $product)

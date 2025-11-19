@@ -233,6 +233,7 @@ const rows = computed(() =>
         name: item.name,
         description: item.description,
         price: item.price,
+        category_id: item.category_id,
         action: item.id,
     })),
 );
@@ -241,15 +242,12 @@ console.log(props.products);
 
 function handlePhotos(event) {
     Form.photos = Array.from(event.target.files);
-
-    console.log(Form.photos);
 }
 
 const submit = () => {
     if (Form.id) {
         Form.put(route('admin.product.update', Form.id), {
             preserveScroll: true,
-            preserveState: true,
             onError: (errors) => {
                 console.log(errors);
             },
@@ -262,7 +260,6 @@ const submit = () => {
     } else {
         Form.post(route('admin.product.store'), {
             preserveScroll: true,
-            preserveState: true,
             onError: (errors) => console.log(errors),
             onSuccess: () => {
                 Form.reset();
@@ -277,9 +274,11 @@ const edit = (item) => {
     showModal.value = true;
     Form.id = item.id;
     Form.name = item.name;
-    Form.price = item.price;
+    Form.price = parseInt(item.price);
     Form.description = item.description;
-    Form.category_id = Number(item.category_id);
+    Form.category_id = item.category_id;
+    Form.photos = [];
+    console.log(item);
 };
 
 const deleteId = (id) => {
