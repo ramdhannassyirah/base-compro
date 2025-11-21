@@ -1,9 +1,11 @@
 <template>
-    <div>
+    <AppLayout>
         <h1>About Us</h1>
-    </div>
+    </AppLayout>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="js" setup>
+import AppLayout from '@/Layouts/AppLayout.vue';
+</script>
 
 <style></style>
