@@ -26,7 +26,7 @@
             <template #cell-photos="{ row }">
                 <div class="flex gap-2">
                     <img
-                        v-for="(photo, index) in row.photos"
+                        v-for="(photo, index) in row.photoUrls"
                         :key="index"
                         :src="photo"
                         class="h-10 w-10 rounded object-cover"
@@ -99,6 +99,18 @@
                     />
                 </div>
 
+                <div v-if="oldPhotos.length">
+                    <p class="mb-2 text-sm">Foto:</p>
+                    <div class="flex gap-2">
+                        <img
+                            v-for="(p, i) in oldPhotos"
+                            :key="i"
+                            :src="p"
+                            class="h-14 w-14 rounded object-cover"
+                        />
+                    </div>
+                </div>
+
                 <div class="">
                     <InputLabel for="name" value="Nama" />
                     <TextInput
@@ -112,10 +124,10 @@
 
                 <div class="">
                     <InputLabel for="price" value="Harga" />
-                    <TextInput
+                    <input
                         type="number"
                         id="price"
-                        class="w-full rounded border p-2"
+                        class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                         v-model="Form.price"
                     />
                     <InputError class="mt-2" :message="Form.errors.price" />
@@ -148,12 +160,12 @@
 
                 <div class="">
                     <InputLabel for="description" value="Deskripsi" />
-                    <TextInput
+                    <textarea
                         type="text"
                         id="description"
-                        class="w-full rounded border p-2"
+                        class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                         v-model="Form.description"
-                    />
+                    ></textarea>
                     <InputError
                         class="mt-2"
                         :message="Form.errors.description"
@@ -206,6 +218,7 @@ const props = defineProps({
 });
 
 const showModal = ref(false);
+const oldPhotos = ref([]);
 
 const Form = useForm({
     id: null,
@@ -229,7 +242,7 @@ const rows = computed(() =>
     (props.products?.data ?? []).map((item, index) => ({
         id: item.id,
         no: index + 1,
-        photos: item.photos,
+        photoUrls: [...item.photos],
         name: item.name,
         description: item.description,
         price: item.price,
@@ -237,8 +250,6 @@ const rows = computed(() =>
         action: item.id,
     })),
 );
-
-console.log(props.products);
 
 function handlePhotos(event) {
     Form.photos = Array.from(event.target.files);
@@ -271,14 +282,17 @@ const submit = () => {
 };
 
 const edit = (item) => {
+    console.log('EDIT ITEM:', item);
+
     showModal.value = true;
+
     Form.id = item.id;
     Form.name = item.name;
     Form.price = parseInt(item.price);
     Form.description = item.description;
     Form.category_id = item.category_id;
+    oldPhotos.value = [...item.photoUrls];
     Form.photos = [];
-    console.log(item);
 };
 
 const deleteId = (id) => {
@@ -297,5 +311,6 @@ const resetForm = () => {
 const closeModal = () => {
     showModal.value = false;
     resetForm();
+    oldPhotos.value = [];
 };
 </script>
