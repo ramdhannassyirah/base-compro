@@ -35,6 +35,7 @@ Route::get('/articles', [FrontendController::class, 'ArticleIndex'])->name('arti
 Route::get('/articles/{slug}', [FrontendController::class, 'ArticleShow'])->name('articles.show');
 Route::get('/products', [FrontendController::class, 'ProductIndex'])->name('products.index');
 Route::get('/products/{slug}', [FrontendController::class, 'ProductShow'])->name('products.show');
+Route::get('/about', [FrontendController::class, 'AboutIndex'])->name('about.show');
 
 
 Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');

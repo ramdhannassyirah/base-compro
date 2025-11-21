@@ -118,6 +118,10 @@ class FrontendController extends Controller
             ]);
         }
 
+        public function AboutIndex()
+        {
+            return Inertia::render('About/Index');
+        }
 
 
 }
